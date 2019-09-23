@@ -18,7 +18,9 @@ class StartupsSpider(Spider):
             item = StartupsItem()
             item['name'] = name
             item['country'] = country
-            yield item
+            yield scrapy.Request(link,
+                                 callback=self.parse_detail,
+                                 meta={'item': item})
 
         
 
